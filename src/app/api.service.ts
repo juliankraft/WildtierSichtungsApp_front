@@ -10,16 +10,15 @@ const httpOptions = {
 @Injectable({
 	providedIn: 'root'
 })
-export class PrepackagingService {
-
-  apiurl = "http://localhost:8089/api/";
+export class ApiService{
 	constructor(private http: HttpClient) {}
 
 	post(target: string, data: any) {
-		return this.http.get(apiurl + target,data);
+		return this.http.get(AppSettings.API_URL + target,data);
 	}
+
 	get(target: string) {
-		return this.http.get(apiurl + target);
+		return this.http.get(AppSettings.API_URL + target);
 	}
 
 }

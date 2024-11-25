@@ -10,4 +10,18 @@
       <ion-title size="large">animals</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  @if (listeSichtbar){
+      <ul>
+        @for(animal of animals; track animal.id) {
+          <li>
+            <ion-item>
+              <ion-label>{{animal.name}}</ion-label>
+            </ion-item>
+        </li>
+        }
+      </ul>
+  }
+  <ion-button (click)="toggleListeSichtbar()">Liste anzeigen</ion-button>
+
 </ion-content>

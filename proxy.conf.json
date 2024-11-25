@@ -3,7 +3,7 @@
       "target": "http://0.0.0.0:8089",
       "secure": false,
       "pathRewrite": {
-        "^/api": "/"
+        "^/api": ""
       },
       "changeOrigin": true
     }
