@@ -10,6 +10,15 @@
       <ion-title size="large">animals</ion-title>
     </ion-toolbar>
   </ion-header>
+ <!-- https://medium.com/swlh/angular-google-map-component-basics-and-tips-7ff679e383ff -->
+
+  @if(showMap){
+  <google-map [options]="googleoptions">
+    <!-- output current location -->
+    <!-- output current location -->
+  </google-map>
+  }
+  <ion-button (click)="setCurrentPosition()">Position test</ion-button>
 
   @if (listeSichtbar){
       <ul>

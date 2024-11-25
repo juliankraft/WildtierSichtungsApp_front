@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
@@ -13,6 +14,7 @@ import { AnimalsPage } from './animals.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    GoogleMapsModule,
     AnimalsPageRoutingModule
   ],
   declarations: [AnimalsPage]
