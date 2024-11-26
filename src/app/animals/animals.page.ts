@@ -103,8 +103,7 @@ export class AnimalsPage implements OnInit {
   saveData(){
     alert('Sichtung erfolgreich gespeichert');
     this.api.post('animals', this.dataset).subscribe((data:any)=>{
-    this.step = 1;
+    window.location.reload();
     });
   }
-
 }
