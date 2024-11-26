@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Wildtier Sichtung</ion-title>
+    <ion-title>Wildtier Sichtung erfassen</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,30 +24,39 @@
         </ion-item>
 
         <ion-item>
-          <ion-input
-            [(ngModel)]="dataset.count_female"
-            label="weiblich" 
-            type="number" 
-            placeholder="0">
-          </ion-input>
-        </ion-item>
+        <ion-list lines="none">
 
-        <ion-item>
-          <ion-input
-            [(ngModel)]="dataset.count_male"
-            label="männlich" 
-            type="number" 
-            placeholder="0">
-          </ion-input>
-        </ion-item>
+          <ion-list-header style="padding-left: 0px;">
+            <ion-label>Erfasse die jeweilige Anzahl</ion-label>
+          </ion-list-header>
 
-        <ion-item>
-          <ion-input
-            [(ngModel)]="dataset.count_unknown"
-            label="unbekannt" 
-            type="number" 
-            placeholder="0">
-          </ion-input>
+          <ion-item>
+            <ion-input
+              [(ngModel)]="dataset.count_female"
+              label="weiblich" 
+              type="number" 
+              placeholder="0">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              [(ngModel)]="dataset.count_male"
+              label="männlich" 
+              type="number" 
+              placeholder="0">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input
+              [(ngModel)]="dataset.count_unknown"
+              label="unbekannt" 
+              type="number" 
+              placeholder="0">
+            </ion-input>
+        </ion-item>
+        </ion-list>
         </ion-item>
 
         <ion-item>
@@ -57,18 +66,21 @@
           </ion-input>
         </ion-item>
       </ion-list>
-      <ion-button (click)="step = 2">Auswahl speichern</ion-button>
+      <ion-button (click)="setCurrentDataAndStep()">Auswahl speichern</ion-button>
   }
 
 
   @if (step == 2) {
     <ion-datetime
+      locale="de-CH"
       displayFormat="DD.MM.YYYY HH:mm"
       pickerFormat="DD.MM.YYYY HH:mm"
       hourCycle="h23"
+      [firstDayOfWeek]="1"
       [(ngModel)]="dataset.date">
+      <span slot="time-label">Zeit</span>
     </ion-datetime>
-    <ion-button (click)="setCurrentPositionAndStep()">Datum speichern</ion-button>
+    <ion-button (click)="setCurrentPositionAndStep()">Datum und Zeit speichern</ion-button>
   }
 
   @if(step == 3){
@@ -85,7 +97,41 @@
       </google-map>
     }
     <ion-button (click)="savePosition()">Position speichern</ion-button>
-    }
+  }
 
+  @if(step == 4){
+    <ion-list>
+      <ion-item>
+        <ion-label>Tierart:</ion-label>
+        <ion-text>{{getAnimalNameById(dataset.animal_id)}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Weiblich:</ion-label>
+        <ion-text>{{dataset.count_female}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Männlich:</ion-label>
+        <ion-text>{{dataset.count_male}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Unbekannt:</ion-label>
+        <ion-text>{{dataset.count_unknown}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bemerkungen:</ion-label>
+        <ion-text>{{dataset.notes}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Datum:</ion-label>
+        <ion-text>{{formatDateForDisplay(dataset.date)}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Position:</ion-label>
+        <ion-text>{{dataset.latitude}}, {{dataset.longitude}}</ion-text>
+      </ion-item>
+    </ion-list>
+    <ion-button (click)="saveData()">Daten speichern</ion-button>
+  }
+  
 
 </ion-content>
