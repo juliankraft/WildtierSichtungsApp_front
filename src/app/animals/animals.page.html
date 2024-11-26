@@ -106,17 +106,27 @@
         <ion-text>{{getAnimalNameById(dataset.animal_id)}}</ion-text>
       </ion-item>
       <ion-item>
-        <ion-label>Weiblich:</ion-label>
-        <ion-text>{{dataset.count_female}}</ion-text>
+        <ion-list lines="none">
+          <ion-list-header style="padding-left: 0px;">
+            <ion-label>Anzahl:</ion-label>
+          </ion-list-header>
+
+        <ion-item>
+          <ion-label>weiblich:</ion-label>
+          <ion-text>{{dataset.count_female}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>männlich:</ion-label>
+          <ion-text>{{dataset.count_male}}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label>unbekannt:</ion-label>
+          <ion-text>{{dataset.count_unknown}}</ion-text>
+        </ion-item>
+      </ion-list>
       </ion-item>
-      <ion-item>
-        <ion-label>Männlich:</ion-label>
-        <ion-text>{{dataset.count_male}}</ion-text>
-      </ion-item>
-      <ion-item>
-        <ion-label>Unbekannt:</ion-label>
-        <ion-text>{{dataset.count_unknown}}</ion-text>
-      </ion-item>
+
+
       <ion-item>
         <ion-label>Bemerkungen:</ion-label>
         <ion-text>{{dataset.notes}}</ion-text>
