@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Tierarten</ion-title>
+    <ion-title>Wildtier Sichtung</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,11 +13,50 @@
  <!-- https://medium.com/swlh/angular-google-map-component-basics-and-tips-7ff679e383ff -->
 
   @if (step == 1){
-      <ion-select (ionChange)="setAnimal($event)">
-        @for(animal of animals; track animal.id) {
-          <ion-select-option value="{{animal.id}}">{{animal.name}}</ion-select-option>
-        }
-      </ion-select>
+      
+      <ion-list>
+        <ion-item>
+          <ion-select placeholder="Wähle die Tierart" (ionChange)="setAnimal($event)">
+            @for(animal of animals; track animal.id) {
+              <ion-select-option value="{{animal.id}}">{{animal.name}}</ion-select-option>
+            }
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            [(ngModel)]="dataset.count_female"
+            label="weiblich" 
+            type="number" 
+            placeholder="0">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            [(ngModel)]="dataset.count_male"
+            label="männlich" 
+            type="number" 
+            placeholder="0">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            [(ngModel)]="dataset.count_unknown"
+            label="unbekannt" 
+            type="number" 
+            placeholder="0">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input
+            [(ngModel)]="dataset.notes"
+            placeholder="Bemerkungen">
+          </ion-input>
+        </ion-item>
+      </ion-list>
       <ion-button (click)="step = 2">Auswahl speichern</ion-button>
   }
 
@@ -36,11 +75,13 @@
     @if(googlePositionSet==true){
       <google-map [options]="googleoptions">
 
-      <map-advanced-marker [position]="googlePosition" (position)="newPosition" #marker
-                           [gmpDraggable]="true"
-      (mapDragend)="onMarkerPositionChange($event)">
-                           ></map-advanced-marker>
-        <!--add marker -->
+        <map-advanced-marker
+          [position]="googlePosition" 
+          (position)="newPosition" #marker
+          [gmpDraggable]="true"
+          (mapDragend)="onMarkerPositionChange($event)">       
+        </map-advanced-marker>
+
       </google-map>
     }
     <ion-button (click)="savePosition()">Position speichern</ion-button>

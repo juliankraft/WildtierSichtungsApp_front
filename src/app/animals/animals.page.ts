@@ -29,7 +29,7 @@ export class AnimalsPage implements OnInit {
       this.animals = data
       console.log(this.animals)
       this.step = 1;
-      this.setCurrentPositionAndStep();
+      // this.setCurrentPositionAndStep();
     });
 
   }
