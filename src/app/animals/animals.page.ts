@@ -101,9 +101,25 @@ export class AnimalsPage implements OnInit {
 
   // ending step 4 - save the current dataset
   saveData(){
-    alert('Sichtung erfolgreich gespeichert');
+    
     this.api.post('animals', this.dataset).subscribe((data:any)=>{
-    window.location.reload();
+    });
+    fetch('http://localhost:8089/api/v1/saveAnimal', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.dataset)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Sichtung erfolgreich gespeichert');
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Fehler beim Speichern der Sichtung.\nError: ' + error);
     });
   }
 }
