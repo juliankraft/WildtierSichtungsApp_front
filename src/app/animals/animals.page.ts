@@ -101,8 +101,13 @@ export class AnimalsPage implements OnInit {
 
   // ending step 4 - save the current dataset
   saveData(){
+
+    console.log('saveData method called'); // Debugging statement
+    console.log('Sending dataset:', this.dataset); // Debugging statement
     
     this.api.post('animals', this.dataset).subscribe((data:any)=>{
+      console.log('API post response:', data); // Debugging statement
+      // Handle response if needed
     });
     fetch('http://localhost:8089/api/v1/saveAnimal', {
       method: 'POST',
@@ -111,7 +116,10 @@ export class AnimalsPage implements OnInit {
       },
       body: JSON.stringify(this.dataset)
     })
-    .then(response => response.json())
+    .then(response => {
+      console.log('Fetch response:', response); // Debugging statement
+      return response.json();
+    })
     .then(data => {
       console.log('Success:', data);
       alert('Sichtung erfolgreich gespeichert');
