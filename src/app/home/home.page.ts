@@ -55,8 +55,6 @@ export class HomePage{
               this.showError('Benutzername ist bereits vergeben');
               return false;
             }
-            
-            console.log('User data:', data);
 
             // Send data to backend using Angular's HttpClient
             this.api.post('createUser', data).subscribe((response: any) => {
