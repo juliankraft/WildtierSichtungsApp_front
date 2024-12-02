@@ -65,27 +65,6 @@ export class HomePage{
 
           );
 
-            // // Send data to backend using Fetch API
-            // fetch('http://localhost:8089/api/v1/createUser', {
-            //   method: 'POST',
-            //   headers: {
-            //     'Content-Type': 'application/json'
-            //   },
-            //   body: JSON.stringify(data)
-            // })
-            // .then(response => {
-            //   console.log('Fetch response:', response); // Debugging statement
-            //   return response.json();
-            // })
-            // .then(responseData => {
-            //   console.log('Success:', responseData);
-            //   this.showSuccess('Benutzer erfolgreich erstellt');
-            // })
-            // .catch((error) => {
-            //   console.error('Error:', error);
-            //   this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error);
-            // });
-
             return true;
           }
         }
