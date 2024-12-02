@@ -58,30 +58,33 @@ export class HomePage{
 
             // Send data to backend using Angular's HttpClient
             this.api.post('createUser', data).subscribe((response: any) => {
-              console.log('API post response:', response); // Debugging statement
-              // Handle response if needed
-            });
-
-            // Send data to backend using Fetch API
-            fetch('http://localhost:8089/api/v1/createUser', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-            })
-            .then(response => {
-              console.log('Fetch response:', response); // Debugging statement
-              return response.json();
-            })
-            .then(responseData => {
-              console.log('Success:', responseData);
               this.showSuccess('Benutzer erfolgreich erstellt');
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-              this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error);
-            });
+            }
+          , (error) => {this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error)}
+
+
+          );
+
+            // // Send data to backend using Fetch API
+            // fetch('http://localhost:8089/api/v1/createUser', {
+            //   method: 'POST',
+            //   headers: {
+            //     'Content-Type': 'application/json'
+            //   },
+            //   body: JSON.stringify(data)
+            // })
+            // .then(response => {
+            //   console.log('Fetch response:', response); // Debugging statement
+            //   return response.json();
+            // })
+            // .then(responseData => {
+            //   console.log('Success:', responseData);
+            //   this.showSuccess('Benutzer erfolgreich erstellt');
+            // })
+            // .catch((error) => {
+            //   console.error('Error:', error);
+            //   this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error);
+            // });
 
             return true;
           }
