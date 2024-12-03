@@ -22,7 +22,7 @@ export class HomePage{
 
     this.api.get('usernames').subscribe((data:any)=>{
       this.usernames = data
-      console.log(this.usernames)
+      console.log(data)
     });
 
     const alert = await this.alertController.create({
@@ -55,15 +55,17 @@ export class HomePage{
               this.showError('Benutzername ist bereits vergeben');
               return false;
             }
-
+            console.log("Attempting to save user", data);
             // Send data to backend using Angular's HttpClient
             this.api.post('createUser', data).subscribe((response: any) => {
+              console.log("Success", response);
               this.showSuccess('Benutzer erfolgreich erstellt');
             }
-          , (error) => {this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error)}
-
-
-          );
+          // console.log("Error");
+          , (error) => {
+            console.log("Error", error);
+            this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error) 
+          });
 
             return true;
           }

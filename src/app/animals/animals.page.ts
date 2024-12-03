@@ -105,7 +105,8 @@ export class AnimalsPage implements OnInit {
     console.log('saveData method called'); // Debugging statement
     console.log('Sending dataset:', this.dataset); // Debugging statement
     
-    this.api.post('animals', this.dataset).subscribe((data:any)=>{
+    this.api.post('saveAnimal', this.dataset).subscribe((response:any)=>{
+      console.log('Success', response);
       alert('Sichtung erfolgreich gespeichert');
     }
     , (error:any) => {alert('Fehler beim Speichern der Sichtung.\nError: ' + error);}

@@ -14,7 +14,7 @@ export class ApiService{
 	constructor(private http: HttpClient) {}
 
 	post(target: string, data: any) {
-		return this.http.post(AppSettings.API_URL + target,data);
+		return this.http.post(AppSettings.API_URL + target, data);
 	}
 
 	get(target: string) {
