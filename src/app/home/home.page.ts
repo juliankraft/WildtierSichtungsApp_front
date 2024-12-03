@@ -23,7 +23,7 @@ export class HomePage{
   async createUser() {
 
     this.api.get('usernames').subscribe((data:any)=>{
-      this.usernames = data
+      this.usernames = data || [];
       console.log(data)
     });
 
@@ -97,9 +97,39 @@ export class HomePage{
     await alert.present();
   }
 
-  login() {
+  async login() {
+
     console.log("Login");
-    // goto animals page
-    this.router.navigate(['/animals']);
+
+    const alert = await this.alertController.create({
+      header: 'Login',
+      inputs: [
+        { name: 'user_name', type: 'text', placeholder: 'Benutzername'},
+        { name: 'pwd', type: 'password', placeholder: 'Passwort'}
+      ],
+      buttons: [
+        { text: 'Abbrechen', role: 'cancel' },
+        {
+          text: 'Bestätigen',
+          handler: (data) => {
+            if (!data.user_name || !data.pwd) {
+              this.showError('Alle Felder müssen ausgefüllt sein');
+              return false;
+            }
+
+            this.api.post('login', data).subscribe((response: any) => {
+              console.log("Success", response);
+              this.showSuccess('Login erfolgreich');
+            }, (error) => {
+              console.log("Error", error);
+              this.showError('Fehler beim Einloggen.\nError: ' + error);
+            });
+            return true;
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
