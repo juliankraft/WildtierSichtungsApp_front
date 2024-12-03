@@ -124,6 +124,9 @@ export class HomePage{
               console.log("Error", error);
               this.showError('Fehler beim Einloggen.\nError: ' + error);
             });
+
+            this.router.navigate(['/animals']);
+            
             return true;
           }
         }
