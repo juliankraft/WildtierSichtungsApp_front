@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: false,
@@ -13,7 +14,8 @@ export class HomePage{
 
   constructor(
     private alertController: AlertController,
-    private api: ApiService
+    private api: ApiService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -97,5 +99,7 @@ export class HomePage{
 
   login() {
     console.log("Login");
+    // goto animals page
+    this.router.navigate(['/animals']);
   }
 }
