@@ -53,6 +53,7 @@ export class AnimalsPage implements OnInit {
         lat: event.latLng.lat(),
         lng: event.latLng.lng(),
       };
+      this.dataset.phone_location = false;
     }
   }
 
@@ -87,6 +88,7 @@ export class AnimalsPage implements OnInit {
       this.googleoptions.mapId = 'd8f1c2e085cdc36';
       this.googlePosition = {lat: position.coords.latitude, lng: position.coords.longitude};
       this.googlePositionSet=true;
+      this.dataset.phone_location = true;
       this.step = 3;
     });
   };
@@ -108,6 +110,7 @@ export class AnimalsPage implements OnInit {
     this.api.post('saveAnimal', this.dataset).subscribe((response:any)=>{
       console.log('Success', response);
       alert('Sichtung erfolgreich gespeichert');
+      this.ngOnInit(); // Reload the page
     }
     , (error:any) => {alert('Fehler beim Speichern der Sichtung.\nError: ' + error);}
   );

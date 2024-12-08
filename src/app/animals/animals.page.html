@@ -140,6 +140,10 @@
         <ion-label>Position:</ion-label>
         <ion-text>{{dataset.latitude}}, {{dataset.longitude}}</ion-text>
       </ion-item>
+      <ion-item>
+        <ion-label>Gerätelocation:</ion-label>
+        <ion-text>{{dataset.phone_location}}</ion-text>
+      </ion-item>
     </ion-list>
     <ion-button (click)="saveData()">Daten speichern</ion-button>
   }
