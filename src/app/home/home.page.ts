@@ -20,7 +20,13 @@ export class HomePage{
     private router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    //check if we are logged in..
+    if (this.tokenProvider.getToken()) {
+      //if yes, redirect to animals page
+      this.router.navigate(['/animals']);
+    }
+  }
 
   async createUser() {
 
@@ -125,15 +131,16 @@ export class HomePage{
               this.tokenProvider.saveToken(response.token);
               window.sessionStorage.setItem('user_name', response.user_name);
               window.sessionStorage.setItem('user_id', response.user_id);
-              //store token
-              console.log("Success", response);
-              this.showSuccess('Login erfolgreich');
+              //this.showSuccess('Login erfolgreich');
+              window.setTimeout(() => {
+                //now we can reload the page and ngOnInit will redirect us to the animals page
+                window.location.reload();
+              }, 1000);
             }, (error) => {
               console.log("Error", error);
               this.showError('Fehler beim Einloggen.\nError: ' + error);
             });
 
-            this.router.navigate(['/animals']);
             return true;
           }
         }

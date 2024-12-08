@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { AlertController } from '@ionic/angular';
 // import { GoogleMap } from '@capacitor/google-maps';
 import { Geolocation } from '@capacitor/geolocation';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: false,
@@ -20,7 +21,7 @@ export class AnimalsPage implements OnInit {
   googlePosition: google.maps.LatLngLiteral = {lat: 0, lng: 0};
   newPosition: google.maps.LatLngLiteral = {lat: 0, lng: 0};
 
-  constructor(private api:ApiService, private alertController: AlertController) {
+  constructor(private api:ApiService, private alertController: AlertController, private router: Router) {
   }
 
   ngOnInit() {
@@ -35,7 +36,13 @@ export class AnimalsPage implements OnInit {
       this.animals = data;
       console.log(this.animals);
       this.step = 1;
-    });
+    }, (error:any)=>{
+        alert("Bitte loggen Sie sich ein um diese Funktion zu nutzen");
+          //clear all remaining session storage (if any)
+          window.sessionStorage.clear();
+          //back to login
+          this.router.navigate(['/home']);
+     });
   }
 
   setAnimal(animal: any){
@@ -101,7 +108,7 @@ export class AnimalsPage implements OnInit {
         ],
         cssClass: 'custom-alert-bottom' // Apply the custom CSS class
       });
-  
+
       await alert.present();
     });
   }
