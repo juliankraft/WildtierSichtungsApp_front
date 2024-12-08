@@ -1,3 +1,6 @@
+<!-- animals.page.html -->
+<div class="test-style">Test Style</div>
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Wildtier Sichtung erfassen</ion-title>
@@ -143,6 +146,10 @@
       <ion-item>
         <ion-label>Gerätelocation:</ion-label>
         <ion-text>{{dataset.phone_location}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Präzision:</ion-label>
+        <ion-text>{{dataset.accuracy}}</ion-text>
       </ion-item>
     </ion-list>
     <ion-button (click)="saveData()">Daten speichern</ion-button>
