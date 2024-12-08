@@ -24,7 +24,10 @@ export class AnimalsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.dataset.user_name = window.sessionStorage.getItem('user_name');
+    this.dataset.user_id = window.sessionStorage.getItem('user_id');
     this.loadAnimals();
+    console.log(this.dataset);
   }
 
   loadAnimals() {
@@ -175,9 +178,6 @@ export class AnimalsPage implements OnInit {
   // ending step 4 - save the current dataset
   saveData(){
 
-    console.log('saveData method called'); // Debugging statement
-    console.log('Sending dataset:', this.dataset); // Debugging statement
-    
     this.api.post('saveAnimal', this.dataset).subscribe((response:any)=>{
       console.log('Success', response);
       alert('Sichtung erfolgreich gespeichert');

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ApiService } from '../api.service';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TokenStorageService } from '../tokenstorage.service';
 
 @Component({
   standalone: false,
@@ -14,6 +15,7 @@ export class HomePage{
 
   constructor(
     private alertController: AlertController,
+    private tokenProvider: TokenStorageService,
     private api: ApiService,
     private router: Router
   ) {}
@@ -65,7 +67,7 @@ export class HomePage{
           // console.log("Error");
           , (error) => {
             console.log("Error", error);
-            this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error) 
+            this.showError('Fehler beim Erstellen des Benutzers.\nError: ' + error)
           });
 
             return true;
@@ -118,6 +120,12 @@ export class HomePage{
             }
 
             this.api.post('login', data).subscribe((response: any) => {
+              //read token
+
+              this.tokenProvider.saveToken(response.token);
+              window.sessionStorage.setItem('user_name', response.user_name);
+              window.sessionStorage.setItem('user_id', response.user_id);
+              //store token
               console.log("Success", response);
               this.showSuccess('Login erfolgreich');
             }, (error) => {
@@ -126,7 +134,6 @@ export class HomePage{
             });
 
             this.router.navigate(['/animals']);
-            
             return true;
           }
         }
