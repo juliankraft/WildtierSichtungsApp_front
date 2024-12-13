@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { ViewChild,Component } from '@angular/core';
 import { UpdateService } from './update.service';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
+import { ModalController } from '@ionic/angular';
+import { ModalInstallComponent } from './modal-install/modal-install.component';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +13,12 @@ import { UpdateService } from './update.service';
 export class AppComponent {
   deferredPrompt: any;
   showA2HSDialog: boolean = false;
+  @ViewChild(IonModal) modal!: IonModal;
+  message = 'Add to home screen';
+  name: string = "";
 
-  constructor(private updateService: UpdateService) {
+  constructor(private updateService: UpdateService,private modalCtrl: ModalController) {
+    console.log('AppComponent -> constructor -> updateService', updateService);
     window.addEventListener('beforeinstallprompt', (event) => {
       // Prevent the mini-infobar from appearing
       event.preventDefault();
@@ -18,19 +26,22 @@ export class AppComponent {
       this.deferredPrompt = event;
       // Show your custom "Add to Home Screen" dialog
       this.showA2HSDialog = true;
+      this.openModal();
+      //call prompt
+//       this.addToHomeScreen();
     });
   }
-    async addToHomeScreen() {
-    if (this.deferredPrompt) {
-      // Show the install prompt
-      this.deferredPrompt.prompt();
-      // Wait for the user to respond to the prompt
-      const { outcome } = await this.deferredPrompt.userChoice;
-      console.log('User response:', outcome);
-      // Clear the saved prompt
-      this.deferredPrompt = null;
-      // Hide your custom dialog
-      this.showA2HSDialog = false;
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: ModalInstallComponent,
+      componentProps: { deferredPrompt: this.deferredPrompt }
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      this.message = `Hello, ${data}!`;
     }
   }
 }

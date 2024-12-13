@@ -14,10 +14,11 @@ import { AppRoutingModule } from './app-routing.module';
 //import { AuthInterceptor } from './auth-interceptor';
 import { authInterceptorProviders } from './auth.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ModalInstallComponent } from './modal-install/modal-install.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [AppComponent],
+  declarations: [AppComponent, ModalInstallComponent],
   imports: [CommonModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, GoogleMapsModule, ServiceWorkerModule.register('ngsw-worker.js', {
   enabled: !isDevMode(),
   // Register the ServiceWorker as soon as the application is stable
