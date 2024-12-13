@@ -1,3 +1,12 @@
+<!-- Add this in your `app.component.html` -->
+<ion-modal *ngIf="showA2HSDialog" (dismiss)="showA2HSDialog = false">
+  <div class="a2hs-dialog">
+    <h3>Add to Home Screen</h3>
+    <p>Install this app for quick access and a better experience.</p>
+    <ion-button (click)="addToHomeScreen()">Install</ion-button>
+    <ion-button (click)="showA2HSDialog = false">Cancel</ion-button>
+  </div>
+</ion-modal>
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
