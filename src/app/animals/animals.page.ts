@@ -201,6 +201,7 @@ export class AnimalsPage implements OnInit {
     this.googleoptions = {};
     this.googlePosition = { lat: 0, lng: 0 };
     this.newPosition = { lat: 0, lng: 0 };
-    this.loadAnimals(); // Reload the animals data
+    // this.loadAnimals(); // Reload the animals data
+    this.ngOnInit();
   }
 }
