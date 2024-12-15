@@ -37,7 +37,9 @@
               [(ngModel)]="dataset.count_female"
               label="weiblich" 
               type="number" 
-              placeholder="0">
+              placeholder="0"
+              min="0"
+              inputmode="numeric">
             </ion-input>
           </ion-item>
 
@@ -46,7 +48,9 @@
               [(ngModel)]="dataset.count_male"
               label="männlich" 
               type="number" 
-              placeholder="0">
+              placeholder="0"
+              min="0"
+              inputmode="numeric">
             </ion-input>
           </ion-item>
 
@@ -55,7 +59,9 @@
               [(ngModel)]="dataset.count_unknown"
               label="unbekannt" 
               type="number" 
-              placeholder="0">
+              placeholder="0"
+              min="0"
+              inputmode="numeric">
             </ion-input>
         </ion-item>
         </ion-list>
