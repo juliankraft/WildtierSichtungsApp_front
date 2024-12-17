@@ -90,22 +90,26 @@
     </ion-datetime>
     <ion-button (click)="setCurrentPositionAndStep()">Datum und Zeit speichern</ion-button>
   }
+  
+    @if(step == 3){
+      <div class="container">
+        @if(googlePositionSet==true){
 
-  @if(step == 3){
-    @if(googlePositionSet==true){
-      <google-map [options]="googleoptions">
-
-        <map-advanced-marker
-          [position]="googlePosition" 
-          (position)="newPosition" #marker
-          [gmpDraggable]="true"
-          (mapDragend)="onMarkerPositionChange($event)">       
-        </map-advanced-marker>
-
-      </google-map>
+          <div class="map-container">
+            <google-map [options]="googleoptions">
+              <map-advanced-marker
+                [position]="googlePosition" 
+                (position)="newPosition" #marker
+                [gmpDraggable]="true"
+                (mapDragend)="onMarkerPositionChange($event)">       
+              </map-advanced-marker>
+            </google-map>
+          </div>
+        }
+        <ion-button class="save-button" (click)="savePosition()">Position speichern</ion-button>
+      </div>  
     }
-    <ion-button (click)="savePosition()">Position speichern</ion-button>
-  }
+  
 
   @if(step == 4){
     <ion-list>

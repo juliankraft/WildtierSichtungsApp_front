@@ -1,0 +1,26 @@
+/* filepath: /home/jk/angular/WildtierSichtungsApp/src/app/animals/animals.page.scss */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .map-container {
+    flex: 1;
+    position: relative;
+  }
+  
+  google-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .save-button {
+    align-self: center;
+    margin: 10px;
+    position: fixed;
+    bottom: 10px;
+  }
