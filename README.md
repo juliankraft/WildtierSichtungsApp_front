@@ -32,12 +32,14 @@ This reository contains the frontend of the WildTierSichtungsApp.
   /environments     # Environment-specific configuration files
   index.html        # Main HTML file
   main.ts           # Main entry point for the application
-  styles.css        # Global styles
+  global.scss       # Global styles
 /public             # Public assets
-/www                # Compiled output for deployment
 angular.json        # Angular CLI configuration
 package.json        # Node.js dependencies and scripts
+server.js           # skript to run development server
+deploy.sh           # Deployment script
 README.md           # Project documentation
+LICENSE.md          # License information
 
 ### Additional Resources:
 
